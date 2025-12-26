@@ -1,0 +1,9 @@
+Metadata-Version: 2.4
+Name: pidisplay
+Version: 0.0.0
+Summary: a display status server for Raspberry Pi
+License-File: LICENSE
+Requires-Dist: Adafruit_SSD1306
+Dynamic: license-file
+Dynamic: requires-dist
+Dynamic: summary
