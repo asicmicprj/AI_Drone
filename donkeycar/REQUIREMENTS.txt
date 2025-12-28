@@ -1,24 +1,43 @@
-# Системные зависимости для установки DonkeyCar на Raspberry Pi
-# Установите их ДО установки Python 3.11.9 через pyenv!
+# Системные зависимости для установки DonkeyCar на Raspberry Pi 4 с Debian
+#
+# ВАЖНО: Используйте автоматический скрипт установки для простоты!
+#   cd ~/projects && ./install_python_and_donkeycar.sh
+#
+# Ручная установка (только для опытных пользователей):
+#
+# Шаг 1: Установка системных зависимостей
+#   sudo apt-get update
+#   sudo apt-get install -y build-essential libffi-dev libssl-dev libbz2-dev \
+#     libreadline-dev libsqlite3-dev libncurses-dev liblzma-dev tk-dev \
+#     xz-utils zlib1g-dev libcap-dev python3-dev python3-pil python3-smbus
+#
+# Шаг 2: Установка pyenv
+#   curl https://pyenv.run | bash
+#
+# Шаг 3: Установка Python 3.11.9
+#   pyenv install 3.11.9
+#
+# Шаг 4: Создание виртуального окружения и установка DonkeyCar
+#   cd ~/projects
+#   ~/.pyenv/versions/3.11.9/bin/python -m venv env
+#   source env/bin/activate
+#   cd donkeycar
+#   pip install -e .[pi]
+#
+# См. INSTALLATION.md для подробных инструкций
 
-# КРИТИЧЕСКИ ВАЖНО (без этого ctypes не будет работать):
-libffi-dev
+# Критичные зависимости для компиляции Python:
+# - libffi-dev (критически важно для ctypes!)
+# - libssl-dev (для ssl модуля)
+# - libbz2-dev, libreadline-dev, libsqlite3-dev (для соответствующих модулей)
+# - libncurses-dev, liblzma-dev, tk-dev, zlib1g-dev (для других модулей)
+# - build-essential, xz-utils (для компиляции)
 
-# Рекомендуемые зависимости для компиляции Python:
-build-essential
-libssl-dev
-libbz2-dev
-libreadline-dev
-libsqlite3-dev
-libncurses5-dev
-libncursesw5-dev
-xz-utils
-tk-dev
-liblzma-dev
+# Дополнительные зависимости для DonkeyCar:
+# - libcap-dev (для python-prctl -> picamera2)
+# - python3-dev, python3-pil, python3-smbus (для picamera2)
 
-# Установка одной командой:
-# sudo apt-get update && sudo apt-get install -y libffi-dev build-essential libssl-dev libbz2-dev libreadline-dev libsqlite3-dev libncurses5-dev libncursesw5-dev xz-utils tk-dev liblzma-dev
-
-# Python версия: 3.11.9 (ОБЯЗАТЕЛЬНО, так как tensorflow-aarch64==2.15.* поддерживает только Python 3.11)
+# Python версия: 3.11.9 (ОБЯЗАТЕЛЬНО!)
+# TensorFlow 2.15 поддерживает только Python 3.11.x
 # Установка через pyenv после установки системных зависимостей
 

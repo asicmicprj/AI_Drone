@@ -28,8 +28,44 @@ Donkeycar is designed to be the 'Hello World' of automomous driving; it is simpl
 - Raspberry Pi.  The Raspberry Pi is the preferred on-board computer for a Donkeycar.  It is helpful to have setup and used a Raspberry Pi, but it is not necessary.  The Donkeycar documentation describes how to install the software on a RaspberryPi OS, but the specifics of how to install the RaspberryPi OS using [Raspberry Pi Imager](https://www.raspberrypi.com/software/) and how to configure the Raspberry Pi using [raspi-config](https://www.raspberrypi.com/documentation/computers/configuration.html) is left to the Raspberry Pi documentation, which is extensive and quite good. I would recommend setting up your Raspberry Pi using the Raspberry Pi documentation and then play with it a little; use the browser to visit websites and watch YouTube videos, like this one taken at the [very first outdoor race](https://youtu.be/tjWmrCIKgnE) for a Donkeycar.  Use a text editor to write and save a file.  Open a terminal and learn how to navigate the file system (see below). If you are comfortable with the Raspberry Pi then you won't have to learn it and Donkeycar at the same time.
 - The Linux [command line shell](https://magpi.raspberrypi.com/articles/terminal-help).  The command line shell is also often called the terminal.  You will type commands into the terminal to install and start the Donkeycar software.  The Donkeycar documentation describes how this works.  It is also helpful to know how navigate the file system and how to list, copy and delete files and directories/folders. You may also access your car [remotely](https://www.raspberrypi.com/documentation/computers/remote-access.html); so you will want to know how to enable and connect WIFI and how to enable and start an [SSH](https://www.raspberrypi.com/documentation/computers/remote-access.html#ssh) terminal or [VNC](https://www.raspberrypi.com/documentation/computers/remote-access.html#vnc) session from your host computer to get a command line on your car.
 
+## Installation on Raspberry Pi 4 (Debian)
+
+### Quick Installation (Recommended)
+
+We provide an automated installation script that installs everything in one go:
+
+```bash
+cd ~/projects
+./install_python_and_donkeycar.sh
+```
+
+The script automatically:
+- ✅ Installs all system dependencies (libffi-dev, libssl-dev, etc.)
+- ✅ Installs/checks pyenv
+- ✅ Installs Python 3.11.9 with all required modules (ctypes, ssl, sqlite3)
+- ✅ Creates virtual environment `env` in `projects/` folder
+- ✅ Installs DonkeyCar with all Raspberry Pi dependencies
+- ✅ Verifies all components are working
+
+**Installation time:** ~30-70 minutes depending on internet speed and Raspberry Pi performance.
+
+For detailed manual installation instructions, see [INSTALLATION.md](INSTALLATION.md).
+
+### After Installation
+
+Activate the virtual environment:
+```bash
+cd ~/projects
+source env/bin/activate
+```
+
+Create a new DonkeyCar project:
+```bash
+donkey createcar --path ~/mycar
+```
+
 ## Get driving.
-After [building a Donkeycar](https://docs.donkeycar.com/guide/build_hardware/) and [installing](https://docs.donkeycar.com/guide/install_software/) the Donkeycar software you can choose your autopilot [template](https://docs.donkeycar.com/guide/create_application/) and [calibrate](https://docs.donkeycar.com/guide/calibrate/) your car and [get driving](https://docs.donkeycar.com/guide/get_driving/)!
+After [building a Donkeycar](https://docs.donkeycar.com/guide/build_hardware/) and installing the Donkeycar software you can choose your autopilot [template](https://docs.donkeycar.com/guide/create_application/) and [calibrate](https://docs.donkeycar.com/guide/calibrate/) your car and [get driving](https://docs.donkeycar.com/guide/get_driving/)!
 
 ## Modify your car's behavior.
 Donkeycar includes a number of pre-built [templates](https://docs.donkeycar.com/guide/create_application/) that make it easy to get started by just changing configuration. The pre-built templates are all you may ever need, but if you want to go farther you can change a template or make your own. A Donkeycar template is organized as a pipeline of software [parts](https://docs.donkeycar.com/parts/about/) that run in order on each pass through the vehicle loop, reading inputs and writing outputs to the vehicle's software memory as they run.  A typical car has a parts that:
