@@ -1,0 +1,24 @@
+# Системные зависимости для установки DonkeyCar на Raspberry Pi
+# Установите их ДО установки Python 3.11.9 через pyenv!
+
+# КРИТИЧЕСКИ ВАЖНО (без этого ctypes не будет работать):
+libffi-dev
+
+# Рекомендуемые зависимости для компиляции Python:
+build-essential
+libssl-dev
+libbz2-dev
+libreadline-dev
+libsqlite3-dev
+libncurses5-dev
+libncursesw5-dev
+xz-utils
+tk-dev
+liblzma-dev
+
+# Установка одной командой:
+# sudo apt-get update && sudo apt-get install -y libffi-dev build-essential libssl-dev libbz2-dev libreadline-dev libsqlite3-dev libncurses5-dev libncursesw5-dev xz-utils tk-dev liblzma-dev
+
+# Python версия: 3.11.9 (ОБЯЗАТЕЛЬНО, так как tensorflow-aarch64==2.15.* поддерживает только Python 3.11)
+# Установка через pyenv после установки системных зависимостей
+
